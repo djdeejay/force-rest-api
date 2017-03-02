@@ -1,6 +1,7 @@
 package com.force.api.chatter;
 
 import com.force.api.*;
+import com.force.api.http.Codes;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -67,7 +68,7 @@ public class ChatterTest {
 
         // Test deleting the feed item just posted
         try {
-            api.delete("/chatter/feed-elements/" + resp.id);
+            api.delete("/chatter/feed-elements/" + resp.id, Codes.expect(204, 404));
         } catch(ResourceException e){
                 fail("Delete failed unexpectedly: "+e);
         }

@@ -25,6 +25,7 @@ public class HttpRequest {
 	String method;
 	String url;
 	int expectedCode = -1; // -1 means no expected code specified.
+	Codes expectedCodes;
 
 	StringBuilder postParams = new StringBuilder();
 
@@ -66,8 +67,17 @@ public class HttpRequest {
 		return this;
 	}
 
+	public HttpRequest expectsCodes(Codes value) {
+		expectedCodes = value;
+		return this;
+	}
+
 	public int getExpectedCode() {
 		return expectedCode;
+	}
+
+	public Codes getExpectedCodes() {
+		return expectedCodes;
 	}
 	
 	public HttpRequest header(String key, String value) {

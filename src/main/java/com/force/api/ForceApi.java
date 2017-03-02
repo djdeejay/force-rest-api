@@ -1,5 +1,6 @@
 package com.force.api;
 
+import com.force.api.http.Codes;
 import com.force.api.http.Http;
 import com.force.api.http.HttpRequest;
 import com.force.api.http.HttpResponse;
@@ -97,10 +98,11 @@ public class ForceApi {
 	 * `as(...)` on ResourceRepresentation. The DELETE can be assumed to have succeeded if this method does not
 	 * throw an exception.
 	 */
-	public ResourceRepresentation delete(String path) {
+	public ResourceRepresentation delete(String path, Codes codes) {
 		return new ResourceRepresentation(apiRequest(new HttpRequest()
 				.url(uriBase() + path)
 				.method("DELETE")
+				.expectsCodes(codes)
 				.header("Accept", "application/json")));
 	}
 
